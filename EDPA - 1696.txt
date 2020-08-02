@@ -30,11 +30,13 @@ int main(){
     int indice;
     int valor;
     int i;
-
+    
+    //A primeira linha de entrada se refere a quantidade testes a ser feita (não inclui nessa conta, as substituições, só testes no vetor original)
     printf("Quantos testes voce deseja fazer? ");
     scanf("%d", &t);
     printf("Nesta execucao serao realizados %d testes \n", t);
 
+    //A segunda linha da entrada refere-se a N (tamanho do vetor a testar) e Q (quantidade de substituições que serão feitas dentro do vetor para testar).
     for(i=0;i<t;i++){
         printf("\nTeste numero %d\n", i+1);
         printf("Entre com os parametros N (tamanho do vetor) e Q (numero de substituicoes): ");
@@ -48,7 +50,7 @@ int main(){
         printf("Entre com o vetor de teste: ");
         scanf("%s", vetor);
         printf("/nVetor adicionado: %s", vetor);
-        /*Chamar funcao para preencher arvore, solucionar e imprimir resposta*/
+        //Chamar funcao para preencher arvore, solucionar e imprimir resposta
 
         if(q>0){
           for(i=0;i<q;i++){
@@ -60,26 +62,16 @@ int main(){
             vetor[indice-1]=valor;
             printf("novo vetor: %s", vetor);
            
-            /*Chamar funcao para preencher arvore, solucionar e imprimir resposta*/
+            //Chamar funcao para preencher arvore, solucionar e imprimir resposta*/
             
           }
         }
     }
-
-    /*#definicao de nome dos jogadores*/
-
-    /*#ler primeira linha
-    num_testes = quantidade de testes
-
-    for(i=0;i<num_testes;i++){
-        iniciar_testes(p1,p2)
-
-        #inversao de nome de jogadores a cada rodada
+    /* Depois precisa adicionar isso no meio do código, a cada rodada inverte a posição dos jogadores.
         swap = p1
         p1 = p2
         p2 = swap
-    }
     */
-    return 0;
+    
     return 0;
 }
