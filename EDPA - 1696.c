@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 //Definindo estrutura da árvore
-struct node
-{
+struct node {
   int num;
   struct node* esq;
   struct node* dir;
@@ -11,8 +10,7 @@ struct node
 typedef struct node Node;
 
 //Definindo estrutura da fila
-struct queue
-{
+struct queue {
   int num;
   struct queue* rear;
   struct queue* front;
@@ -20,18 +18,20 @@ struct queue
 typedef struct queue Queue;
 
 //Função para iniciar a fila (não está retornando pra main os valores, não sei por que.
-void *Create_Queue(Queue *queue, int valor){
-    if (queue == NULL){
-        printf("\nEntrou");
+void Insert_Queue(Queue *queue, int valor){
+    
+    if (queue){
+        printf("Entrou Create_Queue \n");
+     
         queue = (Queue *) malloc(sizeof(Queue));
         queue->num = valor;
         queue->rear = NULL;
         queue->front = NULL;
-        printf("\nnum %d",queue->num);
-        printf("\nrear %d",queue->rear);
-        printf("\nfront %d",queue->front);
-    }
-    else{
+     
+        printf("num [%d] \n",queue->num);
+        //printf("\nrear %d",queue->rear);
+        //printf("\nfront %d",queue->front);
+    } else {
         printf("Error: queue already created.");
     }
 }
@@ -68,11 +68,19 @@ void PopFromQueue(Queue *queue){
 }
 
 //Função para imprimir fila
-void PrintQueue(Queue *queue){
-    if(queue->front != NULL){
-        PrintQueue(queue->front);
-        printf("%d",queue->num);
-    }
+void PrintQueue(Queue queue){
+	Queue aux;
+	aux = queue
+	if (queue != NULL){
+		printf ("[/|");
+		while (queue->front != NULL){
+			printf ("%d] -> [",queue->num);
+			queue = queue->front;
+		}
+		printf ("%d|/]\n",queue->num);
+	}else{
+		printf ("Lista Nula\n");
+	}
 }
 
 /*
@@ -133,6 +141,7 @@ int main(){
 
     //A segunda linha da entrada refere-se a N (tamanho do vetor a testar) e Q (quantidade de substituições que serão feitas dentro do vetor para testar).
     for(i=0;i<t;i++){
+    
         printf("\nTeste numero %d\n", i+1);
         printf("Entre com os parametros N (tamanho do vetor) e Q (numero de substituicoes): ");
         n = 3;
@@ -155,24 +164,25 @@ int main(){
 
         printf("\nVetor adicionado:\n");
         for(j=0;j<n;j++){
-            printf("%d", vetor[j]);
+            printf("%d - ", vetor[j]);
         }
-
+ 	printf("\n");
+ 	
         //CRIAR FUNÇÃO QUE INSERE (N-1) ZEROS ANTES DO VETOR ORIGINAL
-        queue = Create_Queue(queue, vetor[1]);
-        for(j=1;j<n;j++){
-            //PushInQueue(queue, vetor[j]);
+        
+        for(j = 0; j < n; j++){
+     		Insert_Queue(&queue, vetor[j]);       
         }
-        printf("\nFora.");
+        printf("Fora. \n");
 
         //NÃO CONSIGO ACESSAR OS VALORES FORA DA FUNÇÃO CREATE_QUEUE
-        /*printf("\nnum %d",queue->num);
-        printf("\nrear %d",queue->rear);
-        printf("\nfront %d",queue->front);*/
+        //printf("num %d \n",queue->num);
+        //printf("\nrear %d",queue->rear);
+        //printf("\nfront %d",queue->front);
 
         //FUNÇÃO DE IMPRESSÃO NÃO ESTÁ FUNCIONANDO (ACHO QUE PQ NÃO CONSIGO ACESSAR QUEUE NA MAIN)
-        PrintQueue(queue);
-        printf("\nFim.");
+        //PrintQueue(queue);
+        printf("Fim. \n");
 
         //Chamar funcao para preencher arvore, solucionar e imprimir resposta (passar nome do player1 e player2)
 
