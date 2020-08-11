@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 //Definindo estrutura da árvore
 struct noh {
@@ -14,12 +13,17 @@ void PesqIn (TREE arv);
 void insArvoreIN (TREE *arv, int vr);
 int somaNoh (TREE arv);
 
+/*
+* Alteração programada: inserir os dados em um vetor de tamanho variável. O preenchimento total do vetor se dá antes da inserção em árvore.
+* A partir da inserção em árvore os testes são para cada teste (árvore cai ou não)
+*/
+
 //Programa principal
 int main () {
 	TREE arvore=NULL;
 	int testes, tam, i, valor, balanco;
 
-    printf("Insira a quantidade de testes: ");
+   // printf("Insira a quantidade de testes: ");
     scanf("%d", &testes);
 
     //Laço para rodar o programa a quantidade de testes escolhida
@@ -32,12 +36,12 @@ int main () {
         //O balanço sempre inicia vazio
         balanco = 0;
 
-        printf("Insira o tamanho do vetor: ");
+        //printf("Insira o tamanho do vetor: ");
         scanf("%d", &tam);
 
         //Laço principal do programa, onde irá inserir valores do vetor e verificar o balanço da árvore
-        for(i=0;i<tam;i++){
-            printf("Digite o %d valor do vetor: ",i+1);
+        for(i = 0 ; i  < tam ; i++ ){
+           // printf("Digite o %d valor do vetor: ",i+1);
             scanf("%d", &valor);
 
             //Caso o valor inserido não derrube a arvore para a esquerda, insere a esquerda
@@ -50,16 +54,19 @@ int main () {
             }
 
             //Atualiza valor do balando após inserção
+            //R: Esse valor não deveria atualizar o valor da raiz do nó ?
             balanco = somaNoh(arvore->esq) - somaNoh(arvore->dir);
+            arvore->info = balanco;
 
             //Após inserção, verifica se foi quebrado o balanço
-            if(balanco < -5 || balanco > 5){
+            if(arvore->info < -5 || arvore->info > 5){
                 //Resultado negativo após inserção
-                printf("SeaFoodDishes\n");
+                printf("Ho Ho Ho!\n");
                 //Finaliza o teste atual caso não obedeça o balanço
                 break;
             }
 
+            /*
             //Impressões de teste
             printf ("A soma da arvore esquerda e: %d\n",somaNoh(arvore->esq));
             printf ("A soma da arvore direita e: %d\n",somaNoh(arvore->dir));
@@ -72,16 +79,18 @@ int main () {
             printf ("Infixa: ");
             PesqIn (arvore);
             printf ("\n");
-
+			*/
+        }
+        
+        if (balanco >=0 || balanco <= 5){
+        	printf("Feliz Natal!\n");
         }
 
+        //printf("--- --- --- --- --- --- --- --- --- --- --- --- \n");
 
-        printf("--- --- --- --- --- --- --- --- --- --- --- --- \n");
+        testes -= 1;
 
-
-        testes-=1;
-
-        }
+    }
 
     return 0;
 
