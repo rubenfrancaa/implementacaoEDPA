@@ -90,9 +90,6 @@
 		<Unit filename="/home/ruben/Documentos/implementacaoEDPA/Definicoes_Implementacoes.md">
 			<Option target="implementacaoEDPA"/>
 		</Unit>
-		<Unit filename="/home/ruben/Documentos/implementacaoEDPA/EDPA - 1696.c">
-			<Option target="implementacaoEDPA"/>
-		</Unit>
 		<Unit filename="/home/ruben/Documentos/implementacaoEDPA/README.md">
 			<Option target="implementacaoEDPA"/>
 		</Unit>

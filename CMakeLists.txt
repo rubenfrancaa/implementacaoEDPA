@@ -8,5 +8,4 @@ include_directories(.)
 add_executable(implementacaoEDPA
         2723.c
         Definicoes_Implementacoes.md
-        "EDPA - 1696.c"
         README.md)

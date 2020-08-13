@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/implementacaoEDPA.dir/2723.c.o"
-  "CMakeFiles/implementacaoEDPA.dir/EDPA_-_1696.c.o"
   "implementacaoEDPA"
   "implementacaoEDPA.pdb"
 )

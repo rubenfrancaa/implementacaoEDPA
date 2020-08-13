@@ -94,12 +94,12 @@ clean: CMakeFiles/implementacaoEDPA.dir/clean
 CMakeFiles/implementacaoEDPA.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/implementacaoEDPA.dir/build.make CMakeFiles/implementacaoEDPA.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/implementacaoEDPA.dir/build.make CMakeFiles/implementacaoEDPA.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ruben/Documentos/implementacaoEDPA/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target implementacaoEDPA"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ruben/Documentos/implementacaoEDPA/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target implementacaoEDPA"
 .PHONY : CMakeFiles/implementacaoEDPA.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/implementacaoEDPA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/Documentos/implementacaoEDPA/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/Documentos/implementacaoEDPA/cmake-build-debug/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/implementacaoEDPA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/Documentos/implementacaoEDPA/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/implementacaoEDPA.dir/rule
