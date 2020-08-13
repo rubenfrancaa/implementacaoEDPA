@@ -17,7 +17,7 @@ int somaNoh (TREE arv);
 //Programa principal
 int main () {
     TREE arvore=NULL;
-    int testes, quantPresentes, i, pesoPresente, balanco, somaArvEsq, somaArvDir, auxDir, auxEsq;
+    int testes, quantPresentes, i, j, pesoPresente, balanco, somaArvEsq, somaArvDir, auxDir, auxEsq;
 
     scanf("%d", &testes);
 
@@ -30,47 +30,55 @@ int main () {
 
         scanf("%d", &quantPresentes);
 
-        //Laço principal do programa, onde irá inserir valores do vetor e verificar o balanço da árvore
+        balanco = 0;
+        somaArvEsq = 0;
+        somaArvDir = 0;
+
         for(i = 1 ; i <= quantPresentes ; i++ ){
 
-            balanco = 0;
             auxDir = 0;
             auxEsq = 0;
-            somaArvEsq = 0;
-            somaArvDir = 0;
 
             scanf("%d", &pesoPresente);
 
             //Simulação inserção direita
             auxDir = balanco - pesoPresente;
-            printf("auxDir: %d\n", auxDir);
+            //printf("auxDir: %d\n", auxDir);
 
             //Simulação inserção esquerda
             auxEsq = balanco + pesoPresente;
-            printf("auxEsq: %d\n", auxEsq);
+            //printf("auxEsq: %d\n", auxEsq);
 
             //Caso o valor inserido não derrube a arvore para a esquerda, insere a esquerda
-            if(abs(auxDir) > abs(auxEsq)){
-                printf("Entrou!");
+            if(abs(auxDir) >= abs(auxEsq)){
                 insArvoreIN(&arvore->esq, pesoPresente);
                 somaArvEsq += pesoPresente;
-                printf("SomaArvEsq: %d", somaArvEsq);
+                //printf("SomaArvEsq: %d\n", somaArvEsq);
             }
-                //se não, insere a direita
-            else if (abs(auxDir) > abs(auxEsq)){
+
+            //se não, insere a direita
+            else{
                 insArvoreIN(&arvore->dir, pesoPresente);
                 somaArvDir += pesoPresente;
-                printf("SomaArvDir: %d", somaArvDir);
+                //printf("SomaArvDir: %d\n", somaArvDir);
             }
 
             //Atualização do Balanço
-            balanco = abs(somaArvEsq - somaArvDir);
-            printf("balanco: %d\n", balanco);
+            balanco = somaArvEsq - somaArvDir;
+            //printf("balanco: %d\n", balanco);
 
             //Após inserção, verifica se foi quebrado o balanço
-            if(balanco > 5){
+            if(abs(balanco) > 5){
                 //Resultado negativo após inserção
                 printf("Ho Ho Ho!\n");
+                
+                j = i;
+                //Laço para terminar de ler todos valores do vetor
+                while(j < quantPresentes){
+                    //printf("For hohoho, %d vez", j);
+                    scanf("%d", &pesoPresente);
+                    j++;
+                }
                 //Finaliza o teste atual caso não obedeça o balanço
                 break;
             } else {
@@ -78,10 +86,11 @@ int main () {
             }
 
         }
-        if (balanco <= 5 ){
+
+        if (abs(balanco) <= 5){
             printf("Feliz Natal!\n");
-            //balanco = 0;
         }
+
         testes -= 1;
 
     }
