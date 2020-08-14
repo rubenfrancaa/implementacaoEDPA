@@ -19,7 +19,7 @@ static TREE maiorABB (TREE *abb);
 //Programa principal
 int main () {
     TREE arvore=NULL;
-    int testes, quantPresentes, i, j, pesoPresente, balanco, somaArvEsq, somaArvDir, auxDir, auxEsq ,max, equilibrio, remove;
+    int testes, quantPresentes, i, j, pesoPresente, balanco, somaArvEsq, somaArvDir, auxDir, auxEsq ,max, equilibrio;
     scanf("%d", &testes);
 
     //Laço para rodar o programa a quantidade de testes escolhida
@@ -40,38 +40,35 @@ int main () {
 
             auxDir = 0;
             auxEsq = 0;
-            remove = 0;
 
             scanf("%d", &pesoPresente);
-            printf("\nPesoPresente: %d\n", pesoPresente);
+//            printf("\nPesoPresente: %d\n", pesoPresente);
 
 //            printf("Max: %d\n", max);
 
-            printf("Balanço: %d\n", balanco);
+//            printf("Balanço: %d\n", balanco);
             //Simulação inserção esquerda
             auxEsq = balanco + pesoPresente;
-            printf("auxEsq: %d\n", auxEsq);
 
             //Simulação inserção direita
             auxDir = balanco - pesoPresente;
-            printf("auxDir: %d\n", auxDir);
 
-            printf("auxEsq: %d\n", auxEsq);
-            printf("auxDir: %d\n", auxDir);
+//            printf("auxEsq: %d\n", auxEsq);
+//            printf("auxDir: %d\n", auxDir);
 
 //            Tentativa de equilibrar árvore
-            if(abs(auxDir) > 5 && abs(auxEsq) > 5 ){
-                if(balanco >= 0){
-                    printf("Tentativa balanceamento tirando da esquerda.\n");
+            if(abs(auxDir) > 5 && abs(auxEsq) > 5 ){ // entra caso o número seja muito grande
+                if(balanco >= 0){ // isso significa que a arvore esquerda tá mais pesada que a direita
+//                    printf("Tentativa balanceamento tirando da esquerda.\n");
                     equilibrio = pesoPresente - 5;
-                    printf("equilibrio: %d\n", equilibrio);
+//                    printf("equilibrio: %d\n", equilibrio);
 
                     for(j=equilibrio ; j<=max ; j++){
-                        printf("Remove: j = %d\n", j);
+//                        printf("Remove: j = %d\n", j);
                         if(tRemove(&arvore->esq, j) != 1){
                             insArvoreIN(&arvore->dir, j);
-                            printf("SomaEsq: %d\n", somaArvEsq);
-                            printf("SomaDir: %d\n", somaArvDir);
+//                            printf("SomaEsq: %d\n", somaArvEsq);
+//                            printf("SomaDir: %d\n", somaArvDir);
                             //Atualiza soma de árvores
                             somaArvEsq = somaArvEsq - j;
                             somaArvDir = somaArvDir + j;
@@ -82,16 +79,16 @@ int main () {
                     }
                 }
                 else{
-                    printf("Tentativa balanceamento tirando da direita.\n");
+//                    printf("Tentativa balanceamento tirando da direita.\n");
                     equilibrio = pesoPresente - 5;
-                    printf("equilibrio: %d\n", equilibrio);
+//                    printf("equilibrio: %d\n", equilibrio);
 
                     for(j=equilibrio ; j<=max ; j++){
-                        printf("Remove: j = %d\n", j);
+//                        printf("Remove: j = %d\n", j);
                         if(tRemove(&arvore->dir, j) != 1){
                             insArvoreIN(&arvore->esq, j);
-                            printf("SomaEsq: %d\n", somaArvEsq);
-                            printf("SomaDir: %d\n", somaArvDir);
+//                            printf("SomaEsq: %d\n", somaArvEsq);
+//                            printf("SomaDir: %d\n", somaArvDir);
                             //Atualiza soma de árvores
                             somaArvEsq = somaArvEsq + j;
                             somaArvDir = somaArvDir - j;
@@ -105,12 +102,12 @@ int main () {
 
             //Caso o valor inserido não derrube a arvore para a esquerda, insere a esquerda
             if (pesoPresente == 0){
-                printf("Pula inserção.\n");
+//                printf("Pula inserção.\n");
             }
             else if(abs(auxDir) >= abs(auxEsq)){
                     insArvoreIN(&arvore->esq, pesoPresente);
                     somaArvEsq += pesoPresente;
-                    printf("Inseriu a esquerda\n");
+//                    printf("Inseriu a esquerda\n");
 //                    printf("SomaArvEsq: %d\n", somaArvEsq);
             }
 
@@ -118,13 +115,13 @@ int main () {
             else{
                 insArvoreIN(&arvore->dir, pesoPresente);
                 somaArvDir += pesoPresente;
-                printf("Inseriu a direita\n");
+//                printf("Inseriu a direita\n");
 //                printf("SomaArvDir: %d\n", somaArvDir);
             }
 
             //Atualização do Balanço
             balanco = somaArvEsq - somaArvDir;
-            printf("balanco: %d\n", balanco);
+//            printf("balanco: %d\n", balanco);
 
             //Após inserção, verifica se foi quebrado o balanço
             if(abs(balanco) > 5){
@@ -146,12 +143,12 @@ int main () {
             if(max < pesoPresente){
                 max = pesoPresente;
             }
-            printf ("\nArvore esquerda: ");
-            PesqIn (arvore->esq);
-            printf ("\nArvore direita: ");
-            PesqIn (arvore->dir);
-            printf ("\n");
-            printf("balanco: %d\n", balanco);
+//            printf ("\nArvore esquerda: ");
+//            PesqIn (arvore->esq);
+//            printf ("\nArvore direita: ");
+//            PesqIn (arvore->dir);
+//            printf ("\n");
+//            printf("balanco: %d\n", balanco);
 
         }
 
@@ -200,7 +197,7 @@ int somaNoh (TREE arv) {
 }
 
 TREE tPesq (TREE *arv,int vr){
-    if (!*arv)   //Elemento n�o encontrado
+    if (!*arv)   //Elemento não encontrado
         return (NULL);
     else
     if (vr == (*arv)->info) // Elemento encontrado na raiz
@@ -216,25 +213,27 @@ int tRemove (TREE *arv, int vr){
     TREE p;
     if (!*arv) {
         printf("Elemento não encontrado.\n");
-        return 1; //Elemento n�o encontrado
+        return 1; //Elemento não encontrado
     }
-    if ((vr == (*arv)->info) == 1){
+    if ((vr == (*arv)->info) == 1){ //caso o valor esteja na raiz
         p = *arv;
         if (!(*arv)->esq)
-            *arv = (*arv)->dir; // a raiz n�o tem filho esquerdo
+            *arv = (*arv)->dir; // a raiz não tem filho esquerdo
         else
         if (!(*arv)->dir)
-            *arv = (*arv)->esq; // a raiz n�o tem filho direito
+            *arv = (*arv)->esq; // a raiz não tem filho direito
         else{
             p = maiorABB (&((*arv)->esq));
             (*arv)->info = p->info;
         }
         free(p);
-        printf ("Elemento encontrado e Removido\n");
+//        printf ("Elemento encontrado e Removido\n");
     }
     else
-    if ((vr < (*arv)->esq)==1) //Procura na subarvore esquerda
+    if ((vr < (*arv)->info)==1){
         tRemove (& ((*arv)->esq),vr);
+//        printf("teste");
+    } //Procura na subarvore esquerda
     else
         tRemove (& ((*arv)->dir),vr);
 }
