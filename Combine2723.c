@@ -12,7 +12,7 @@ typedef struct noh *TREEh;
 void PesqIn(TREEh arv);
 void PesqLeaf(TREEh arv);
 int Verifica(TREEh arv, int total);
-
+int alturaArvore(TREEh arv);
 void criaArvore(TREEh *arv, int vr);
 void insArvore(TREEh *arv, int vr);
 void insArvoreEsq(TREEh *arv, int vr, int esqPai, int dirPai);
@@ -21,7 +21,7 @@ void insArvoreDir(TREEh *arv, int vr, int esqPai, int dirPai);
 //Programa principal
 int main() {
     TREEh arvore = NULL;
-    int testes, quantPresentes, i, pesoPresente, total, resposta;
+    int testes, quantPresentes, i, pesoPresente, total, altura;
     scanf("%d", &testes);
 
     //Laço para rodar o programa a quantidade de testes escolhida
@@ -30,6 +30,7 @@ int main() {
         //Resetando árvore toda vez que inica um teste e definindo valor 0.
         arvore = NULL;
         total = 0;
+
 
         //Cria a árvore com raíz zero.
         criaArvore(&arvore, 0);
@@ -44,28 +45,25 @@ int main() {
             //Recebe os valores do presente a cada iteração.
             scanf("%d", &pesoPresente);
             insArvore(&arvore, pesoPresente);
-            total += pesoPresente;
-
-            resposta = Verifica(arvore, total);
-
-            PesqIn(arvore);
-
-            if(resposta == 1){
-                printf("Hohoho!\n");
-            }
+            total = total + pesoPresente;
 
         }
+            altura = alturaArvore(arvore);
+        //printf ("Altura arvore: [%d] | Quantidade de presentes: [%d]\n", altura, quantPresentes);
+         if (altura == quantPresentes){
+             printf("Feliz Natal!\n");
+         } else {
+             printf("Ho Ho Ho!\n");
+         }
 
-        printf("Feliz Natal!\n");
 
-
-        printf("\n");
+//        printf("\n");
 
 //        printf("Contemple os nós folhas.\n");
 //        PesqLeaf(arvore);
 //        resposta = Verifica(arvore, total);
 
-        printf("\n");
+//        printf("\n");
 
         testes -= 1;
 
@@ -79,39 +77,17 @@ int main() {
 
  int Verifica(TREEh arv, int total) {
 //Infixa
-//    if(arv->somaDir == 0 && arv->somaEsq == 0){
-//        Verifica(arv->esq, total);
-//        Verifica(arv->dir, total);
-//    }
+
     if(arv) {
         if (arv->somaEsq + arv->somaDir == total) {
-            return 0;
+           return 0;
         } else {
             Verifica(arv->esq, total);
             Verifica(arv->dir, total);
-            return 1;
         }
     }
-}
+ }
 
-
-/*int Verifica(TREEh arv, int total) {
-//Infixa
-    if (arv == NULL) {
-        return 0;
-    }
-    if(arv->somaEsq + arv->somaDir == total && abs(arv->somaEsq - arv->somaDir) <= 5){
-        printf("%i | %i\t", arv->somaEsq, arv->somaDir);
-        printf("//\tdiferenca: %d  \t",arv->somaEsq-arv->somaDir);
-        printf("// soma: %d\t//\t total: %d\n", arv->somaEsq + arv->somaDir, total);
-    }
-    if(arv->esq != NULL){
-        Verifica(arv->esq, total);
-    }
-    if(arv->dir != NULL){
-        Verifica(arv->dir, total);
-    }
-}*/
 
 void PesqIn(TREEh arv) {
 //Infixa
@@ -155,7 +131,7 @@ void criaArvore(TREEh *arv, int vr) {
 void insArvore(TREEh *arv, int vr) {
     if (*arv != NULL) {
         insArvoreEsq(&((*arv)->esq), vr, 0, 0);
-        insArvoreDir(&((*arv)->dir), vr, 0, 0 );
+        insArvoreDir(&((*arv)->dir), vr, 0, 0);
     }
 }
 
@@ -189,5 +165,19 @@ void insArvoreDir(TREEh *arv, int vr, int esqPai, int dirPai) {
     } else {
         insArvoreEsq(&((*arv)->esq), vr, ((*arv)->somaEsq), ((*arv)->somaDir));
         insArvoreDir(&((*arv)->dir), vr, ((*arv)->somaEsq), ((*arv)->somaDir));
+    }
+}
+
+int alturaArvore (TREEh arv) {
+    if (!arv)
+        return -1;
+    else {
+        int he = alturaArvore(arv->esq);
+        int hd = alturaArvore(arv->dir);
+
+        if (he < hd)
+            return hd + 1;
+        else
+            return he + 1;
     }
 }
