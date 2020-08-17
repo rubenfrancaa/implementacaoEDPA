@@ -17,6 +17,7 @@ void criaArvore(TREEh *arv, int vr);
 void insArvore(TREEh *arv, int vr);
 void insArvoreEsq(TREEh *arv, int vr, int esqPai, int dirPai);
 void insArvoreDir(TREEh *arv, int vr, int esqPai, int dirPai);
+void apagaArvore (TREEh arv);
 
 //Programa principal
 int main() {
@@ -30,7 +31,6 @@ int main() {
         //Resetando árvore toda vez que inica um teste e definindo valor 0.
         arvore = NULL;
         total = 0;
-
 
         //Cria a árvore com raíz zero.
         criaArvore(&arvore, 0);
@@ -55,63 +55,11 @@ int main() {
          } else {
              printf("Ho Ho Ho!\n");
          }
-
-
-//        printf("\n");
-
-//        printf("Contemple os nós folhas.\n");
-//        PesqLeaf(arvore);
-//        resposta = Verifica(arvore, total);
-
-//        printf("\n");
-
-        testes -= 1;
+    apagaArvore(arvore);
+    testes -= 1;
 
     }
     return 0;
-}
-
-/*Falta retornar pra main que essas respotas impressas
- * representam "Feliz Natal", caso não haja respostas => Hohoho!
-*/
-
- int Verifica(TREEh arv, int total) {
-//Infixa
-
-    if(arv) {
-        if (arv->somaEsq + arv->somaDir == total) {
-           return 0;
-        } else {
-            Verifica(arv->esq, total);
-            Verifica(arv->dir, total);
-        }
-    }
- }
-
-
-void PesqIn(TREEh arv) {
-//Infixa
-    if (arv != NULL) {
-        printf("%i | %i\n", arv->somaEsq, arv->somaDir);
-        PesqIn(arv->esq);
-        PesqIn(arv->dir);
-    }
-}
-
-void PesqLeaf(TREEh arv) {
-//Infixa
-    if (arv == NULL) {
-        return;
-    }
-    if(arv->esq == NULL && arv->dir == NULL){
-        printf("%i | %i \n", arv->somaEsq, arv->somaDir);
-    }
-    if(arv->esq != NULL){
-        PesqLeaf(arv->esq);
-    }
-    if(arv->dir != NULL){
-        PesqLeaf(arv->dir);
-    }
 }
 
 
@@ -131,7 +79,7 @@ void criaArvore(TREEh *arv, int vr) {
 void insArvore(TREEh *arv, int vr) {
     if (*arv != NULL) {
         insArvoreEsq(&((*arv)->esq), vr, 0, 0);
-        insArvoreDir(&((*arv)->dir), vr, 0, 0);
+        //insArvoreDir(&((*arv)->dir), vr, 0, 0);
     }
 }
 
@@ -180,4 +128,14 @@ int alturaArvore (TREEh arv) {
         else
             return he + 1;
     }
+}
+
+void apagaArvore (TREEh arv) {
+    if (arv == NULL)
+        return;
+
+    apagaArvore(arv->esq);
+    apagaArvore(arv->dir);
+
+    free(arv);
 }
