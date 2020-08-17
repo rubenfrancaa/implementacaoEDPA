@@ -57,6 +57,7 @@ int main() {
              * A tentativa de rebalancear a árvore será feita em caso os testes de inserção a dir e esq resultem em valores
              * (em módulo) maiores que 5.
              * */
+
             if (arvore->esq != NULL && arvore->dir != NULL && (somaArvDir+somaArvEsq) > 5) {
                 if (abs(auxEsq) > 5 && abs(auxDir) > 5) {
 
